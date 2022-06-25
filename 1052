@@ -1,0 +1,42 @@
+#include<stdio.h>
+
+int get(char arr[][5])//获取序号的最长长度
+{
+    int i=0;
+    char temp;
+    while((temp=getchar())!='\n')
+    {
+        if(temp=='[')
+        {
+            scanf("%[^]]",arr[i++]);//读取]前面的字符,%[]是扫描字符集合的意思 
+        }
+    }
+    return i;
+}
+
+int main()
+{
+    char hand[10][5],eye[10][5],mouth[10][5];
+    int hand_l=get(hand);
+    int eye_l=get(eye);
+    int mouth_l=get(mouth);
+    int k;
+    scanf("%d",&k);
+    while(k-->0)
+    {
+        int l_hand,l_eye,cmouth,r_eye,r_hand;
+        scanf("%d%d%d%d%d",&l_hand,&l_eye,&cmouth,&r_eye,&r_hand);//输入序号
+        if(l_hand<1||l_hand>hand_l||l_eye<1||l_eye>eye_l||cmouth<1||cmouth>mouth_l||r_eye<1||r_eye>eye_l||r_hand<1||r_hand>hand_l)
+        {
+            //如果序号是负数或者超出序号的最大值范围
+            printf("Are you kidding me? @\\/@");
+            printf("\n");
+        }
+        else
+        {
+            //符合条件输出
+            printf("%s(%s%s%s)%s\n",hand[l_hand-1],eye[l_eye-1],mouth[cmouth-1],eye[r_eye-1],hand[r_hand-1]);
+        }
+    }
+}
+
